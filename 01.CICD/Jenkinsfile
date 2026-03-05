@@ -1,10 +1,21 @@
 pipeline {
     agent any
+     parameters {
+            choice(name: 'build tools',
+                choices: ['maven' , 'gradle'
+                 description: 'Choose the build tool for this deployment')],
+        }
     stages {
-        stage('Source') {
-            steps {
-                echo 'Installing requirements...'
+        stage('build') {
+            when {
+                    expression { params.build_tools == 'maven') {
+                        sh 'mvn clean package'
             }
+            when {
+                    expression { params.build_tools == 'gradle') {
+                        sh './gradlew build'
+                    }
+                }
         }
     }
 }
