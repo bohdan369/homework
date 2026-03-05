@@ -1,9 +1,13 @@
 pipeline {
     agent any
+    tools {
+        maven 'maven-3.6.3'
+        gradle 'gradle-6.8.3'
+       }
      parameters {
             choice(name: 'build tools',
-                choices: ['maven' , 'gradle'
-                 description: 'Choose the build tool for this deployment')],
+                 choices: ['maven' , 'gradle']
+                 description: 'Choose the build tool for this deployment'),
         }
     stages {
         stage('build') {
