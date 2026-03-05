@@ -3,23 +3,24 @@ pipeline {
     tools {
         maven 'maven-3.8.4'
         gradle 'gradle-8.14.2'
-       }
-     parameters {
+    }
+    parameters {
             choice(name: 'build tools',
                  choices: ['maven' , 'gradle'],
-                 description: 'Choose the build tool for this deployment')
-        }
+                 description: 'Choose the build tool for this deployment'
+            )
+    }
     stages {
         stage('build') {
             when {
-                    expression { params.build_tools == "maven" } {
+                    expression { params.build_tools == "maven" }
                         sh 'mvn clean package'
             }
             when {
-                    expression { params.build_tools == "gradle" } {
+                    expression { params.build_tools == "gradle" }
                         sh './gradlew build'
                     }
-                }
+            }
         }
     }
 }
