@@ -6,8 +6,8 @@ pipeline {
        }
      parameters {
             choice(name: 'build tools',
-                 choices: ['maven' , 'gradle']
-                 description: 'Choose the build tool for this deployment'),
+                 choices: ['maven' , 'gradle'],
+                 description: 'Choose the build tool for this deployment')
         }
     stages {
         stage('build') {
