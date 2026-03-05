@@ -27,6 +27,7 @@ pipeline {
             }
             steps {
             dir('01.CICD'){
+                sh 'chmod +x gradlew'
                 sh './gradlew build'
             }
             }
