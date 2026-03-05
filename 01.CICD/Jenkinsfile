@@ -16,7 +16,9 @@ pipeline {
                 expression { params.build_tool == 'maven' }
             }
             steps {
+            dir('01.CICD'){
                 sh 'mvn clean package'
+            }
             }
         }
         stage('Build with Gradle') {
@@ -24,7 +26,9 @@ pipeline {
                 expression { params.build_tool == 'gradle' }
             }
             steps {
+            dir('01.CICD'){
                 sh './gradlew build'
+            }
             }
         }
     }
