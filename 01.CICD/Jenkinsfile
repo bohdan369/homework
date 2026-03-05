@@ -10,6 +10,29 @@ pipeline {
                description: 'Choose the build tool for this deployment'
         )
     }
+        properties([
+            promotions([
+                [
+                    name: 'QA Approved',
+                    icon: 'star-gold',
+                    conditions: [
+                        selfPromotion(evenIfUnstable: false)
+                    ]
+                ],
+                [
+                    name: 'Deployed to PROD',
+                    icon: 'star-blue',
+                    conditions: [
+                        manual('admin')
+                    ],
+                    actions: [
+                        {
+                            sh 'echo "Deploying to Production..."'
+                        }
+                    ]
+                ]
+            ])
+        ])
     stages {
         stage('Build with Maven') {
             when {
