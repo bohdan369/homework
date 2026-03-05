@@ -10,7 +10,7 @@ pipeline {
                description: 'Choose the build tool for this deployment'
         )
     }
-        properties([
+        options([
             promotions([
                 [
                     name: 'QA Approved',
