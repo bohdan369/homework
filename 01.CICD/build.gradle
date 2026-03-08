@@ -1,0 +1,9 @@
+apply plugin: 'war'
+
+dependencies {
+    providedCompile 'javax.servlet:javax.servlet-api:4.0.1'
+}
+
+war {
+    archiveFileName = "${project.name}-${project.version}.war"
+}
